@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "pages/Login";
 import AuthError from "pages/AuthError";
 import { AuthProvider } from "contexts/Auth";
+import AuthSuccess from "pages/AuthSuccess";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             element={<h1 className="text-sm text-red-500">Root path</h1>}
           />
           <Route path="/error" element={<AuthError />} />
+          <Route path="/success" element={<AuthSuccess />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/inbox"
