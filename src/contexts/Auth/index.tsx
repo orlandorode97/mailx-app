@@ -14,7 +14,7 @@ export const AuthContext = createContext<IAuthError>(defaultState);
 
 export const AuthProvider: React.FC<{}> = ({ children }) => {
   const [error, setError] = useState<string>();
-  console.log({ error }, "from context");
+
   return (
     <AuthContext.Provider
       value={{
