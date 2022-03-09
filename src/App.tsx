@@ -1,26 +1,25 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "pages/Login";
 import AuthError from "pages/AuthError";
 import { AuthProvider } from "contexts/Auth";
 import AuthSuccess from "pages/AuthSuccess";
+import Inbox from "pages/Inbox";
+import Auth from "routes/Auth";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<h1 className="text-sm text-red-500">Root path</h1>}
-          />
           <Route path="/error" element={<AuthError />} />
           <Route path="/success" element={<AuthSuccess />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/inbox"
-            element={<h1 className="text-sm text-red-500">Inbox path</h1>}
-          />
+          <Route element={<Auth />}>
+            {/* Protected routes */}
+            <Route path="/inbox" element={<Inbox />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/inbox" />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
