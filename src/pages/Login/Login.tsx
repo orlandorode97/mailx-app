@@ -8,7 +8,7 @@ import { Dialog } from "components/Dialog";
 
 const Login: React.FC<{}> = () => {
   const { error } = useContext(AuthContext);
-  console.log(error, "from login");
+
   return (
     <>
       <div className="h-screen flex flex-col justify-center content-center items-center bg-gray-50 space-y-4">
