@@ -1,6 +1,6 @@
 import React from "react";
 import OutlookLogo from "assets/outlook.png";
-import { Button, Image, Text } from "@mantine/core";
+import { Button, Image, Link } from "@chakra-ui/react";
 
 const {
   REACT_APP_OUTLOOK_URL,
@@ -14,13 +14,22 @@ const {
 
 const OutlookButton: React.FC<{}> = () => {
   return (
-    <Button variant="outline" name="outlook" fullWidth>
-      <Image src={OutlookLogo} className="max-auto h-8 w-8 mx-1" />
-      <Text className="mx-1" color="blue">
-        Outlook / Hotmail
-      </Text>
+    <Button
+      variant={"outline"}
+      colorScheme="facebook"
+      leftIcon={<Image src={OutlookLogo} boxSize="30px" />}
+      size="md"
+      isFullWidth
+    >
+      Outlook
     </Button>
   );
+  // <Button variant="outline" name="outlook" fullWidth>
+  //   <Image src={OutlookLogo} className="max-auto h-8 w-8 mx-1" />
+  //   <Text className="mx-1" color="blue">
+  //     Outlook / Hotmail
+  //   </Text>
+  // </Button>
 };
 
 export default OutlookButton;

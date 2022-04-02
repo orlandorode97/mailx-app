@@ -1,27 +1,43 @@
 import React from "react";
-import Drawer from "components/Drawer";
+import {
+  Flex,
+  Drawer,
+  DrawerContent,
+  useDisclosure,
+  DrawerOverlay,
+} from "@chakra-ui/react";
 import Navbar from "components/Navbar";
-import InboxList from "components/InboxList";
-import { LabelsProvider } from "contexts/Labels/index";
+import Sidebar from "components/Sidebar";
+import Mailbox from "components/MailBox";
+import { MessageProvider } from "contexts/Messages";
 
-export default function Inbox() {
+const Inbox: React.FC<{}> = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <React.Fragment>
-      <div className="h-screen flex flex-col">
-        <div className="flex flex-grow overflow-hidden">
-          <LabelsProvider>
-            <Drawer />
-          </LabelsProvider>
-          <div className="flex-flex-grow w-full">
-            <Navbar />
-            <div className="flex">
-              <div className="w-full">
-                <InboxList />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
+    <Flex direction="column" overflow="revert">
+      <Sidebar
+        onClose={() => onClose}
+        display={{ base: "none", md: "block" }}
+      />
+      <Drawer
+        autoFocus={false}
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        returnFocusOnClose={false}
+        onOverlayClick={onClose}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <Sidebar onClose={onClose} />
+        </DrawerContent>
+      </Drawer>
+      <Navbar onOpen={onOpen} />
+      <MessageProvider>
+        <Mailbox />
+      </MessageProvider>
+    </Flex>
   );
-}
+};
+
+export default Inbox;
